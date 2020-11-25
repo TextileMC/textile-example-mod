@@ -1,0 +1,81 @@
+import java.util.function.Function
+
+plugins {
+    id 'fabric-loom' version '0.5-SNAPSHOT'
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+archivesBaseName = project.archives_base_name
+version = project.mod_version
+group = project.maven_group
+
+repositories {
+    maven {
+        name = "Jitpack"
+        url "https://jitpack.io/"
+    }
+    maven {
+        name = "Concerning"
+        url "https://maven.concern.i.ng/"
+    }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+
+    mappings "net.textilemc:yarrn:inf-20100618:v2"
+
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+    // Some dependencies aren't gotten by the loader, so we add them ourselves
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.8.1'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.8.1'
+    implementation 'com.google.guava:guava:28.0-jre'
+    implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.6'
+    implementation 'org.ow2.asm:asm:8.0'
+    implementation 'org.ow2.asm:asm-analysis:8.0'
+    implementation 'org.ow2.asm:asm-commons:8.0'
+    implementation 'org.ow2.asm:asm-tree:8.0'
+    implementation 'org.ow2.asm:asm-util:8.0'
+}
+
+minecraft {
+    intermediaryUrl = new Function<String, String>() {
+        @Override
+        String apply(String mcVer) {
+            return "https://maven.concern.i.ng/net/textilemc/intermediary/" + mcVer + "/intermediary-" + mcVer + "-v2.jar"
+        }
+    }
+
+    clientOnly = true
+}
+
+processResources {
+    inputs.property "version", project.version
+
+    from(sourceSets.main.resources.srcDirs) {
+        include "fabric.mod.json"
+        expand "version": project.version
+    }
+
+    from(sourceSets.main.resources.srcDirs) {
+        exclude "fabric.mod.json"
+    }
+}
+
+// ensure that the encoding is set to UTF-8, no matter what the system default is
+// this fixes some edge cases with special characters not displaying correctly
+// see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
+// if it is present.
+// If you remove this task, sources will not be generated.
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = "sources"
+    from sourceSets.main.allSource
+}
