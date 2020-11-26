@@ -1,7 +1,7 @@
 import java.util.function.Function
 
 plugins {
-    id 'fabric-loom' version '0.5-SNAPSHOT'
+    id 'textile-loom' version '0.5.textile'
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
