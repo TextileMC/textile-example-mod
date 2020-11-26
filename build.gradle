@@ -25,7 +25,7 @@ repositories {
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
 
-    mappings "net.textilemc:yarrn:inf-20100618:v2"
+    mappings "net.textilemc:yarrn:inf-20100618+build20d331:v2"
 
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
