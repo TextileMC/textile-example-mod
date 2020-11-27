@@ -27,9 +27,7 @@
   ],
 
   "depends": {
-    "fabricloader": "*"
-  },
-  "suggests": {
-    "flamingo": "*"
+    "fabricloader": "*",
+    "minecraft": "20100618"
   }
 }

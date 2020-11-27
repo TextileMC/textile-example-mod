@@ -1,7 +1,7 @@
 import java.util.function.Function
 
 plugins {
-    id 'textile-loom' version '0.5.textile'
+    id 'textile-loom' version '0.5.1+build12'
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -25,7 +25,7 @@ repositories {
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
 
-    mappings "net.textilemc:yarrn:inf-20100618+build20d331:v2"
+    mappings "net.textilemc:yarrn:inf-20100618+build20d332:v2"
 
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
@@ -39,6 +39,8 @@ dependencies {
     implementation 'org.ow2.asm:asm-commons:8.0'
     implementation 'org.ow2.asm:asm-tree:8.0'
     implementation 'org.ow2.asm:asm-util:8.0'
+    annotationProcessor group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.8.1'
+    annotationProcessor group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.8.1'
 }
 
 minecraft {
