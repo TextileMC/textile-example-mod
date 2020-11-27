@@ -1,5 +1,3 @@
-import java.util.function.Function
-
 plugins {
     id 'textile-loom' version '0.5.1+build12'
 }
@@ -43,12 +41,19 @@ dependencies {
     annotationProcessor group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.8.1'
 }
 
-minecraft {
-    intermediaryUrl = new Function<String, String>() {
-        @Override
-        String apply(String mcVer) {
-            return "https://maven.concern.i.ng/net/textilemc/intermediary/" + mcVer + "/intermediary-" + mcVer + "-v2.jar"
+configurations.all {
+    resolutionStrategy {
+        dependencySubstitution {
+            substitute module('org.lwjgl.lwjgl:lwjgl_util:2.9.1-nightly-20130708-debug3') with module('org.lwjgl.lwjgl:lwjgl_util:2.9.4-nightly-20150209') 
+            substitute module('org.lwjgl.lwjgl:lwjgl:2.9.1-nightly-20130708-debug3') with module('org.lwjgl.lwjgl:lwjgl:2.9.4-nightly-20150209')
         }
+        force 'org.lwjgl.lwjgl:lwjgl-platform:2.9.4-nightly-20150209'
+    }
+}
+
+minecraft {
+    intermediaryUrl = {
+        return "https://maven.concern.i.ng/net/textilemc/intermediary/" + it + "/intermediary-" + it + "-v2.jar"
     }
 
     clientOnly = true
