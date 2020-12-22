@@ -1,5 +1,5 @@
 plugins {
-    id 'textile-loom' version '0.5.1+build12'
+    id 'fabric-loom' version '0.5-SNAPSHOT'
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -14,16 +14,15 @@ repositories {
         name = "Jitpack"
         url "https://jitpack.io/"
     }
-    maven {
-        name = "Concerning"
-        url "https://maven.concern.i.ng/"
+    flatDir {
+        dir "libs"
     }
 }
 
 dependencies {
-    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    minecraft name: "inf-20100630-2", version: "inf-20100630-2"
 
-    mappings "net.textilemc:yarrn:inf-20100618+build20d353:v2"
+    mappings files("libs/null.jar")
 
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
@@ -32,11 +31,11 @@ dependencies {
     implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.8.1'
     implementation 'com.google.guava:guava:28.0-jre'
     implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.6'
-    implementation 'org.ow2.asm:asm:8.0'
-    implementation 'org.ow2.asm:asm-analysis:8.0'
-    implementation 'org.ow2.asm:asm-commons:8.0'
-    implementation 'org.ow2.asm:asm-tree:8.0'
-    implementation 'org.ow2.asm:asm-util:8.0'
+    implementation 'org.ow2.asm:asm:9.0'
+    implementation 'org.ow2.asm:asm-analysis:9.0'
+    implementation 'org.ow2.asm:asm-commons:9.0'
+    implementation 'org.ow2.asm:asm-tree:9.0'
+    implementation 'org.ow2.asm:asm-util:9.0'
     annotationProcessor group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.8.1'
     annotationProcessor group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.8.1'
 }
@@ -53,9 +52,9 @@ configurations.all {
 
 minecraft {
     intermediaryUrl = {
-        return "https://maven.concern.i.ng/net/textilemc/intermediary/" + it + "/intermediary-" + it + "-v2.jar"
+        return "https://gist.githubusercontent.com/PheonixVX/6e2b5ab5c75beb3223cc6b4aadd61da7/raw/a17ece22f71eb8c88d4107b931e6c719b8ec1577/inf-20100630-2.tiny"
     }
-
+    customManifest = "https://gist.githubusercontent.com/PheonixVX/1c8cc056b69b8fb6fd2ac1e5e80020ba/raw/67c9337775ed67f1422434c7c95c88025c2296f1/inf-20100630-2.json"
     clientOnly = true
 }
 
