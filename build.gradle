@@ -22,7 +22,7 @@ repositories {
 dependencies {
     minecraft name: "inf-20100630-2", version: "inf-20100630-2"
 
-    mappings files("libs/null.jar")
+    mappings name: "null", version: "null"
 
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
