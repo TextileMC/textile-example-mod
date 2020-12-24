@@ -3,6 +3,7 @@
   "package": "net.textilemc.examplemod.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "ExampleMixin"
   ],
   "client": [
   ],

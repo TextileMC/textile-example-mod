@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '0.5-SNAPSHOT'
+    id 'textile-loom' version '0.5.1+build12'
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -17,12 +17,13 @@ repositories {
     flatDir {
         dir "libs"
     }
+    mavenLocal()
 }
 
 dependencies {
     minecraft name: "inf-20100630-2", version: "inf-20100630-2"
 
-    mappings name: "null", version: "null"
+    mappings "com.github.TextileMC:yarrn:inf-20100630-2-SNAPSHOT"
 
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
@@ -52,7 +53,7 @@ configurations.all {
 
 minecraft {
     intermediaryUrl = {
-        return "https://gist.githubusercontent.com/PheonixVX/6e2b5ab5c75beb3223cc6b4aadd61da7/raw/a17ece22f71eb8c88d4107b931e6c719b8ec1577/inf-20100630-2.tiny"
+        return "https://github.com/PheonixVX/trashcan/blob/main/intermediary-inf-20100630-2-v2.jar?raw=true"
     }
     customManifest = "https://gist.githubusercontent.com/PheonixVX/1c8cc056b69b8fb6fd2ac1e5e80020ba/raw/67c9337775ed67f1422434c7c95c88025c2296f1/inf-20100630-2.json"
     clientOnly = true
