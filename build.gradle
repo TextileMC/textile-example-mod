@@ -24,7 +24,7 @@ repositories {
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
 
-    mappings "net.textilemc:yarrn:inf-20100618+build20d353:v2"
+    mappings "net.textilemc:yarrn:inf-20100618+build21d286:v2"
 
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
@@ -42,22 +42,28 @@ dependencies {
 //     annotationProcessor group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.8.1'
 }
 
-configurations.all {
- resolutionStrategy {
-     dependencySubstitution {
-         substitute module('org.lwjgl.lwjgl:lwjgl_util:2.9.1-nightly-20130708-debug3') with module('org.lwjgl.lwjgl:lwjgl_util:2.9.4-nightly-20150209')
-         substitute module('org.lwjgl.lwjgl:lwjgl:2.9.1-nightly-20130708-debug3') with module('org.lwjgl.lwjgl:lwjgl:2.9.4-nightly-20150209')
-         substitute module('net.java.jinput:jinput:2.0.5') with module('net.java.jinput:jinput:2.0.9')
-     }
-     force 'org.lwjgl.lwjgl:lwjgl-platform:2.9.4-nightly-20150209'
-     force 'net.java.jinput:jinput:2.0.9'
- }
-}
+//configurations.all {
+//     resolutionStrategy {
+//         dependencySubstitution {
+//             substitute module('org.lwjgl.lwjgl:lwjgl_util:2.9.1-nightly-20130708-debug3') with module('org.lwjgl.lwjgl:lwjgl_util:2.9.4-nightly-20150209')
+//             substitute module('org.lwjgl.lwjgl:lwjgl:2.9.1-nightly-20130708-debug3') with module('org.lwjgl.lwjgl:lwjgl:2.9.4-nightly-20150209')
+//             substitute module('net.java.jinput:jinput:2.0.5') with module('net.java.jinput:jinput:2.0.9')
+//         }
+//         force 'org.lwjgl.lwjgl:lwjgl-platform:2.9.4-nightly-20150209'
+//         force 'net.java.jinput:jinput:2.0.9'
+//     }
+//}
 
 loom {
     setIntermediaryUrl('https://maven.concern.i.ng/net/textilemc/intermediary/%1$s/intermediary-%1$s-v2.jar')
 
     clientOnlyMinecraftJar()
+
+    runs {
+        client {
+            vmArgs "-Dfabric.gameVersion=${project.minecraft_version}"
+        }
+    }
 }
 
 processResources {
