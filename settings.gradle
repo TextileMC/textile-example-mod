@@ -1,14 +1,14 @@
 pluginManagement {
     repositories {
-        jcenter()
-        maven {
-            name = "concern"
-            url = "https://maven.concern.i.ng/"
-        }
-        gradlePluginPortal()
         maven {
             name = 'Fabric'
             url = 'https://maven.fabricmc.net/'
         }
+        maven {
+            name = "concern"
+            url = "https://maven.concern.i.ng/"
+        }
+        mavenCentral()
+        gradlePluginPortal()
     }
 }
