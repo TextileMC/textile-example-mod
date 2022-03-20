@@ -28,6 +28,6 @@
 
   "depends": {
     "fabricloader": "*",
-    "minecraft": "20100618"
+    "minecraft": "0.31.20100618"
   }
 }
