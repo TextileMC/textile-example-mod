@@ -42,7 +42,7 @@ dependencies {
 //}
 
 loom {
-    setIntermediaryUrl('https://maven.concern.i.ng/net/textilemc/intermediary/%1$s/intermediary-%1$s-v2.jar')
+    setIntermediaryUrl('https://maven.concern.i.ng/releases/net/textilemc/intermediary/%1$s/intermediary-%1$s-v2.jar')
 
     clientOnlyMinecraftJar()
 
